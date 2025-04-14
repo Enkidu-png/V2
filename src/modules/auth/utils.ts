@@ -11,18 +11,13 @@ export const generateAuthCookie = async ({
 }: Props) => {
   const cookies = await getCookies();
 
-  // Authentication on subdomain routing does not work in development
-  // "sameSite" and "secure" must both be present for it to work
-  // but it is not supported in development, only in production
   cookies.set({
     name: `${prefix}-token`,
     value,
     httpOnly: true,
     path: "/",
-    ...(process.env.NODE_ENV !== "development" && {
-      sameSite: "none",
-      domain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
-      secure: true,
-    }),
-  })
+    sameSite: "none",
+    domain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
+    secure: process.env.NODE_ENV === "production",
+  });
 };
