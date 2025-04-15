@@ -1,5 +1,7 @@
 # Multi-Tenant E-Commerce with Platform Fees
 
+![7](https://github.com/user-attachments/assets/cc429a6b-ae9a-43d1-ac22-15a15cc4955a)
+
 A modern e-commerce platform built with Next.js, Payload CMS, and Stripe, featuring multi-tenant architecture and platform fees capabilities.
 
 ## Features
