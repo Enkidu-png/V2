@@ -3,7 +3,6 @@
 import z from "zod";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Poppins } from "next/font/google";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,11 +22,6 @@ import {
 } from "@/components/ui/form";
 
 import { loginSchema } from "../../schemas";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["700"],
-});
 
 export const SignInView = () => {
   const router = useRouter();
@@ -68,8 +62,8 @@ export const SignInView = () => {
           >
             <div className="flex items-center justify-between mb-8">
               <Link href="/">
-                <span className={cn("text-2xl font-semibold", poppins.className)}>
-                  funroad
+                <span className="text-2xl font-semibold">
+                  FERMENT
                 </span>
               </Link>
               <Button
@@ -84,7 +78,7 @@ export const SignInView = () => {
               </Button>
             </div>
             <h1 className="text-4xl font-medium">
-              Welcome back to Funroad.
+              Welcome back to FERMENT.
             </h1>
             <FormField
               name="email"
