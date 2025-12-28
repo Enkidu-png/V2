@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
-
 export const Footer = () => {
   return (
     <footer className="border-t font-medium bg-white">
