@@ -15,7 +15,26 @@ export const categoriesRouter = createTRPCRouter({
       sort: "name"
     });
 
-    const formattedData = data.docs.map((doc) => ({
+    // Custom sort order: All first, then alphabetical, Accessories last
+    const customOrder = ['all', 'clothes', 'jewelery', 'posters', 'pottery', 'tattoos', 'music', 'accessories'];
+    const sortedData = data.docs.sort((a, b) => {
+      const aIndex = customOrder.indexOf(a.slug);
+      const bIndex = customOrder.indexOf(b.slug);
+
+      // If both are in custom order, use that order
+      if (aIndex !== -1 && bIndex !== -1) {
+        return aIndex - bIndex;
+      }
+
+      // If only one is in custom order, prioritize it
+      if (aIndex !== -1) return -1;
+      if (bIndex !== -1) return 1;
+
+      // Otherwise, sort alphabetically
+      return a.name.localeCompare(b.name);
+    });
+
+    const formattedData = sortedData.map((doc) => ({
       ...doc,
       subcategories: (doc.subcategories?.docs ?? []).map((doc) => ({
         // Because of "depth: 1" we are confident "doc" will be a type of "Category"
